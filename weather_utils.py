@@ -72,6 +72,44 @@ def ms_to_mph(ms):
     return ms / 0.44704
 
 
+def __get_wind_adjustment(wind_speed):
+    """
+    Calculate the wind adjustment value by wind speed
+    :param float wind_speed:
+    :return:
+    """
+    if wind_speed < 0:
+        raise ValueError('wind speed cannot be negative')
+    if 0 <= wind_speed <= 12:
+        wind = 1
+    elif 13 <= wind_speed <= 25:
+        wind = 2
+    else:
+        wind = 0
+
+    return wind
+
+
+def __get_cloud_adjustment(okta):
+    """
+    Calculate the cloud adjustment value by okta
+    :param int okta: okta value between 0 and 8
+    :return:
+    """
+    if 0 <= okta < 2:
+        cloud = 1
+    elif 2 <= okta < 4:
+        cloud = 2
+    elif 4 <= okta < 6:
+        cloud = 3
+    elif okta >= 6:
+        cloud = 4
+    elif okta < 0 or okta > 8:
+        raise ValueError('Okta has to be between 0 and 8')
+
+    return cloud
+
+
 def __calculate_adjustment(okta, wind_speed):
     """
     Calculate adjustment needed for fog probability using okta and wind speed.
@@ -83,44 +121,29 @@ def __calculate_adjustment(okta, wind_speed):
     :return:
     :rtype: float
     """
-    if wind_speed < 0:
-        raise ValueError('wind speed cannot be negative')
-    if 0 <= wind_speed <= 12:
-        wind = 1
-    elif 13 <= wind_speed <= 25:
-        wind = 2
-    else:
+    wind = __get_wind_adjustment(wind_speed)
+    cloud = __get_cloud_adjustment(okta)
+
+    if wind == 0:
         return 0.5
 
-    if 0 <= okta < 2:
-        cloud = 1
-    elif 2 <= okta < 4:
-        cloud = 2
-    elif 4 <= okta < 6:
-        cloud = 3
-    elif okta >= 6:
-        cloud = 4
-    elif okta < 0 or okta > 8:
-        return 0.5
+    if wind == 1 and cloud == 1:
+        return 0
+    elif wind == 1 and cloud == 2:
+        return 0
+    elif wind == 1 and cloud == 3:
+        return 1
+    elif wind == 1 and cloud == 4:
+        return 1.5
 
-    if wind == 1:
-        if cloud == 1:
-            return 0
-        elif cloud == 2:
-            return 0
-        elif cloud == 3:
-            return 1
-        elif cloud == 4:
-            return 1.5
-    elif wind == 2:
-        if cloud == 1:
-            return -1.5
-        elif cloud == 2:
-            return 0
-        elif cloud == 3:
-            return 0.5
-        elif cloud == 4:
-            return 0.5
+    if wind == 2 and cloud == 1:
+        return -1.5
+    elif wind == 2 and cloud == 2:
+        return 0
+    elif wind == 2 and cloud == 3:
+        return 0.5
+    elif wind == 2 and cloud == 4:
+        return 0.5
 
 
 def calculate_fog_temperature(temperature, dew_point, okta, wind_speed):
