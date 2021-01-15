@@ -50,7 +50,7 @@ class TestWeatherUtils(TestCase):
         wind_speed = 0
         self.assertEqual(8.549999999999999, calculate_fog_temperature(
             temperature, dew_point, okta, wind_speed
-        ), msg="Test case 1 failed")
+        ), msg='Test case 1 failed')
 
         temperature = 10
         dew_point = 10
@@ -58,7 +58,7 @@ class TestWeatherUtils(TestCase):
         wind_speed = 14
         self.assertEqual(8.329999999999998, calculate_fog_temperature(
             temperature, dew_point, okta, wind_speed
-        ), msg="Test case 2 failed")
+        ), msg='Test case 2 failed')
 
         temperature = 10
         dew_point = 10
@@ -66,7 +66,7 @@ class TestWeatherUtils(TestCase):
         wind_speed = 14
         self.assertEqual(8.829999999999998, calculate_fog_temperature(
             temperature, dew_point, okta, wind_speed
-        ), msg="Test case 3 failed")
+        ), msg='Test case 3 failed')
 
         temperature = 10
         dew_point = 10
@@ -74,7 +74,7 @@ class TestWeatherUtils(TestCase):
         wind_speed = 1
         self.assertEqual(9.829999999999998, calculate_fog_temperature(
             temperature, dew_point, okta, wind_speed
-        ), msg="Test case 4 failed")
+        ), msg='Test case 4 failed')
 
         temperature = 10
         dew_point = 10
@@ -82,7 +82,7 @@ class TestWeatherUtils(TestCase):
         wind_speed = 26
         self.assertEqual(8.829999999999998, calculate_fog_temperature(
             temperature, dew_point, okta, wind_speed
-        ), msg="Test case 5 failed")
+        ), msg='Test case 5 failed')
 
         temperature = 10
         dew_point = 10
@@ -90,7 +90,7 @@ class TestWeatherUtils(TestCase):
         wind_speed = 24
         self.assertEqual(6.829999999999998, calculate_fog_temperature(
             temperature, dew_point, okta, wind_speed
-        ), msg="Test case 6 failed")
+        ), msg='Test case 6 failed')
 
         temperature = 10
         dew_point = 10
@@ -98,7 +98,7 @@ class TestWeatherUtils(TestCase):
         wind_speed = 24
         self.assertEqual(8.829999999999998, calculate_fog_temperature(
             temperature, dew_point, okta, wind_speed
-        ), msg="Test case 7 failed")
+        ), msg='Test case 7 failed')
 
         temperature = 10
         dew_point = 15
@@ -106,7 +106,7 @@ class TestWeatherUtils(TestCase):
         wind_speed = 24
         self.assertEqual(13.049999999999999, calculate_fog_temperature(
             temperature, dew_point, okta, wind_speed
-        ), msg="Test case 8 failed")
+        ), msg='Test case 8 failed')
 
         temperature = 10
         dew_point = 15
@@ -114,7 +114,7 @@ class TestWeatherUtils(TestCase):
         wind_speed = 1
         self.assertEqual(12.549999999999999, calculate_fog_temperature(
             temperature, dew_point, okta, wind_speed
-        ), msg="Test case 9 failed")
+        ), msg='Test case 9 failed')
 
         temperature = 10
         dew_point = 15
@@ -122,15 +122,16 @@ class TestWeatherUtils(TestCase):
         wind_speed = 11
         self.assertEqual(13.549999999999999, calculate_fog_temperature(
             temperature, dew_point, okta, wind_speed
-        ), msg="Test case 10 failed")
+        ), msg='Test case 10 failed')
 
         temperature = 10
         dew_point = 15
         okta = -1
         wind_speed = 11
-        self.assertEqual(13.049999999999999, calculate_fog_temperature(
-            temperature, dew_point, okta, wind_speed
-        ), msg="Test case 11 failed")
+        self.assertRaises(
+            ValueError, calculate_fog_temperature, temperature,
+            dew_point, okta, wind_speed
+        )
 
         temperature = 10
         dew_point = 15
@@ -138,7 +139,8 @@ class TestWeatherUtils(TestCase):
         wind_speed = -1
         self.assertRaises(
             ValueError, calculate_fog_temperature, temperature,
-            dew_point, okta, wind_speed)
+            dew_point, okta, wind_speed
+        )
 
     def test_calculate_fog_probability(self):
         min_temperature = 0
@@ -146,7 +148,7 @@ class TestWeatherUtils(TestCase):
         want = 3
         self.assertEqual(
             want, calculate_fog_probability(min_temperature, fog_temperature),
-            msg=f'Test case 1 failed'
+            msg='Test case 1 failed'
         )
 
         min_temperature = 10
@@ -154,7 +156,7 @@ class TestWeatherUtils(TestCase):
         want = 1
         self.assertEqual(
             want, calculate_fog_probability(min_temperature, fog_temperature),
-            msg=f'Test case 2 failed'
+            msg='Test case 2 failed'
         )
 
         min_temperature = 0
@@ -162,7 +164,7 @@ class TestWeatherUtils(TestCase):
         want = 5
         self.assertEqual(
             want, calculate_fog_probability(min_temperature, fog_temperature),
-            msg=f'Test case 3 failed'
+            msg='Test case 3 failed'
         )
 
         min_temperature = 10
@@ -170,7 +172,7 @@ class TestWeatherUtils(TestCase):
         want = 3
         self.assertEqual(
             want, calculate_fog_probability(min_temperature, fog_temperature),
-            msg=f'Test case 4 failed'
+            msg='Test case 4 failed'
         )
 
         min_temperature = 10
@@ -178,7 +180,7 @@ class TestWeatherUtils(TestCase):
         want = 4
         self.assertEqual(
             want, calculate_fog_probability(min_temperature, fog_temperature),
-            msg=f'Test case 5 failed'
+            msg='Test case 5 failed'
         )
 
         min_temperature = 11.6
@@ -186,7 +188,7 @@ class TestWeatherUtils(TestCase):
         want = 2
         self.assertEqual(
             want, calculate_fog_probability(min_temperature, fog_temperature),
-            msg=f'Test case 6 failed'
+            msg='Test case 6 failed'
         )
 
         min_temperature = 12.6
@@ -194,5 +196,5 @@ class TestWeatherUtils(TestCase):
         want = 1
         self.assertEqual(
             want, calculate_fog_probability(min_temperature, fog_temperature),
-            msg=f'Test case 7 failed'
+            msg='Test case 7 failed'
         )
