@@ -1,0 +1,40 @@
+[
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 2.56,
+      "units": "C"
+    },
+    "humidity": {
+      "value": 71.99,
+      "units": "%"
+    },
+    "dewpoint": {
+      "value": -1.96,
+      "units": "C"
+    },
+    "observation_time": {
+      "value": "2021-01-14T14:00:00.000Z"
+    }
+  },
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 2.08,
+      "units": "C"
+    },
+    "humidity": {
+      "value": 76.09,
+      "units": "%"
+    },
+    "dewpoint": {
+      "value": -1.67,
+      "units": "C"
+    },
+    "observation_time": {
+      "value": "2021-01-14T15:00:00.000Z"
+    }
+  }
+]

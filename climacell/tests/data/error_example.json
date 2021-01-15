@@ -1,0 +1,5 @@
+{
+  "statusCode": 400,
+  "errorCode": "BadRequest",
+  "message": "Message body content not allowed."
+}
