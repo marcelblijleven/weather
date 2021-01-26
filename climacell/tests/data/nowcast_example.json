@@ -1,0 +1,535 @@
+[
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 3.64,
+      "units": "C"
+    },
+    "feels_like": {
+      "value": 0.52,
+      "units": "C"
+    },
+    "dewpoint": {
+      "value": 2.19,
+      "units": "C"
+    },
+    "wind_speed": {
+      "value": 3.46,
+      "units": "m/s"
+    },
+    "wind_gust": {
+      "value": 7.45,
+      "units": "m/s"
+    },
+    "humidity": {
+      "value": 90.68,
+      "units": "%"
+    },
+    "wind_direction": {
+      "value": 210.14,
+      "units": "degrees"
+    },
+    "sunrise": {
+      "value": "2021-01-26T07:29:49.903Z"
+    },
+    "sunset": {
+      "value": "2021-01-26T16:15:55.352Z"
+    },
+    "observation_time": {
+      "value": "2021-01-26T19:16:55.971Z"
+    }
+  },
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 3.74,
+      "units": "C"
+    },
+    "feels_like": {
+      "value": 0.55,
+      "units": "C"
+    },
+    "dewpoint": {
+      "value": 2.55,
+      "units": "C"
+    },
+    "wind_speed": {
+      "value": 3.59,
+      "units": "m/s"
+    },
+    "wind_gust": {
+      "value": 7.85,
+      "units": "m/s"
+    },
+    "humidity": {
+      "value": 92.28,
+      "units": "%"
+    },
+    "wind_direction": {
+      "value": 210.14,
+      "units": "degrees"
+    },
+    "sunrise": {
+      "value": "2021-01-26T07:29:49.903Z"
+    },
+    "sunset": {
+      "value": "2021-01-26T16:15:55.352Z"
+    },
+    "observation_time": {
+      "value": "2021-01-26T19:46:55.971Z"
+    }
+  },
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 3.76,
+      "units": "C"
+    },
+    "feels_like": {
+      "value": 0.49,
+      "units": "C"
+    },
+    "dewpoint": {
+      "value": 2.5,
+      "units": "C"
+    },
+    "wind_speed": {
+      "value": 3.73,
+      "units": "m/s"
+    },
+    "wind_gust": {
+      "value": 8.17,
+      "units": "m/s"
+    },
+    "humidity": {
+      "value": 91.77,
+      "units": "%"
+    },
+    "wind_direction": {
+      "value": 217.24,
+      "units": "degrees"
+    },
+    "sunrise": {
+      "value": "2021-01-26T07:29:49.903Z"
+    },
+    "sunset": {
+      "value": "2021-01-26T16:15:55.352Z"
+    },
+    "observation_time": {
+      "value": "2021-01-26T20:16:55.971Z"
+    }
+  },
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 3.73,
+      "units": "C"
+    },
+    "feels_like": {
+      "value": 0.36,
+      "units": "C"
+    },
+    "dewpoint": {
+      "value": 2.13,
+      "units": "C"
+    },
+    "wind_speed": {
+      "value": 3.86,
+      "units": "m/s"
+    },
+    "wind_gust": {
+      "value": 8.42,
+      "units": "m/s"
+    },
+    "humidity": {
+      "value": 89.62,
+      "units": "%"
+    },
+    "wind_direction": {
+      "value": 217.24,
+      "units": "degrees"
+    },
+    "sunrise": {
+      "value": "2021-01-26T07:29:49.903Z"
+    },
+    "sunset": {
+      "value": "2021-01-26T16:15:55.352Z"
+    },
+    "observation_time": {
+      "value": "2021-01-26T20:46:55.971Z"
+    }
+  },
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 3.61,
+      "units": "C"
+    },
+    "feels_like": {
+      "value": 0.08,
+      "units": "C"
+    },
+    "dewpoint": {
+      "value": 1.32,
+      "units": "C"
+    },
+    "wind_speed": {
+      "value": 4.09,
+      "units": "m/s"
+    },
+    "wind_gust": {
+      "value": 9.07,
+      "units": "m/s"
+    },
+    "humidity": {
+      "value": 85.38,
+      "units": "%"
+    },
+    "wind_direction": {
+      "value": 201.14,
+      "units": "degrees"
+    },
+    "sunrise": {
+      "value": "2021-01-26T07:29:49.903Z"
+    },
+    "sunset": {
+      "value": "2021-01-26T16:15:55.352Z"
+    },
+    "observation_time": {
+      "value": "2021-01-26T21:16:55.971Z"
+    }
+  },
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 3.43,
+      "units": "C"
+    },
+    "feels_like": {
+      "value": -0.33,
+      "units": "C"
+    },
+    "dewpoint": {
+      "value": 0.16,
+      "units": "C"
+    },
+    "wind_speed": {
+      "value": 4.41,
+      "units": "m/s"
+    },
+    "wind_gust": {
+      "value": 10.05,
+      "units": "m/s"
+    },
+    "humidity": {
+      "value": 79.52,
+      "units": "%"
+    },
+    "wind_direction": {
+      "value": 201.14,
+      "units": "degrees"
+    },
+    "sunrise": {
+      "value": "2021-01-26T07:29:49.903Z"
+    },
+    "sunset": {
+      "value": "2021-01-26T16:15:55.352Z"
+    },
+    "observation_time": {
+      "value": "2021-01-26T21:46:55.971Z"
+    }
+  },
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 3.19,
+      "units": "C"
+    },
+    "feels_like": {
+      "value": -0.63,
+      "units": "C"
+    },
+    "dewpoint": {
+      "value": -0.45,
+      "units": "C"
+    },
+    "wind_speed": {
+      "value": 4.42,
+      "units": "m/s"
+    },
+    "wind_gust": {
+      "value": 10.32,
+      "units": "m/s"
+    },
+    "humidity": {
+      "value": 77.27,
+      "units": "%"
+    },
+    "wind_direction": {
+      "value": 208.42,
+      "units": "degrees"
+    },
+    "sunrise": {
+      "value": "2021-01-26T07:29:49.903Z"
+    },
+    "sunset": {
+      "value": "2021-01-26T16:15:55.352Z"
+    },
+    "observation_time": {
+      "value": "2021-01-26T22:16:55.971Z"
+    }
+  },
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 2.91,
+      "units": "C"
+    },
+    "feels_like": {
+      "value": -0.84,
+      "units": "C"
+    },
+    "dewpoint": {
+      "value": -0.64,
+      "units": "C"
+    },
+    "wind_speed": {
+      "value": 4.18,
+      "units": "m/s"
+    },
+    "wind_gust": {
+      "value": 10.05,
+      "units": "m/s"
+    },
+    "humidity": {
+      "value": 77.81,
+      "units": "%"
+    },
+    "wind_direction": {
+      "value": 208.42,
+      "units": "degrees"
+    },
+    "sunrise": {
+      "value": "2021-01-26T07:29:49.903Z"
+    },
+    "sunset": {
+      "value": "2021-01-26T16:15:55.352Z"
+    },
+    "observation_time": {
+      "value": "2021-01-26T22:46:55.971Z"
+    }
+  },
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 2.66,
+      "units": "C"
+    },
+    "feels_like": {
+      "value": -1.21,
+      "units": "C"
+    },
+    "dewpoint": {
+      "value": -0.64,
+      "units": "C"
+    },
+    "wind_speed": {
+      "value": 4.3,
+      "units": "m/s"
+    },
+    "wind_gust": {
+      "value": 10.26,
+      "units": "m/s"
+    },
+    "humidity": {
+      "value": 79.22,
+      "units": "%"
+    },
+    "wind_direction": {
+      "value": 191.68,
+      "units": "degrees"
+    },
+    "sunrise": {
+      "value": "2021-01-26T07:29:49.903Z"
+    },
+    "sunset": {
+      "value": "2021-01-26T16:15:55.352Z"
+    },
+    "observation_time": {
+      "value": "2021-01-26T23:16:55.971Z"
+    }
+  },
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 2.45,
+      "units": "C"
+    },
+    "feels_like": {
+      "value": -1.7,
+      "units": "C"
+    },
+    "dewpoint": {
+      "value": -0.49,
+      "units": "C"
+    },
+    "wind_speed": {
+      "value": 4.68,
+      "units": "m/s"
+    },
+    "wind_gust": {
+      "value": 10.83,
+      "units": "m/s"
+    },
+    "humidity": {
+      "value": 81.29,
+      "units": "%"
+    },
+    "wind_direction": {
+      "value": 191.68,
+      "units": "degrees"
+    },
+    "sunrise": {
+      "value": "2021-01-26T07:29:49.903Z"
+    },
+    "sunset": {
+      "value": "2021-01-26T16:15:55.352Z"
+    },
+    "observation_time": {
+      "value": "2021-01-26T23:46:55.971Z"
+    }
+  },
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 2.29,
+      "units": "C"
+    },
+    "feels_like": {
+      "value": -1.98,
+      "units": "C"
+    },
+    "dewpoint": {
+      "value": -0.5,
+      "units": "C"
+    },
+    "wind_speed": {
+      "value": 4.84,
+      "units": "m/s"
+    },
+    "wind_gust": {
+      "value": 10.96,
+      "units": "m/s"
+    },
+    "humidity": {
+      "value": 82.06,
+      "units": "%"
+    },
+    "wind_direction": {
+      "value": 203.74,
+      "units": "degrees"
+    },
+    "sunrise": {
+      "value": "2021-01-27T07:28:24.718Z"
+    },
+    "sunset": {
+      "value": "2021-01-27T16:17:44.301Z"
+    },
+    "observation_time": {
+      "value": "2021-01-27T00:16:55.971Z"
+    }
+  },
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 2.18,
+      "units": "C"
+    },
+    "feels_like": {
+      "value": -2.11,
+      "units": "C"
+    },
+    "dewpoint": {
+      "value": -0.64,
+      "units": "C"
+    },
+    "wind_speed": {
+      "value": 4.83,
+      "units": "m/s"
+    },
+    "wind_gust": {
+      "value": 10.75,
+      "units": "m/s"
+    },
+    "humidity": {
+      "value": 81.82,
+      "units": "%"
+    },
+    "wind_direction": {
+      "value": 203.74,
+      "units": "degrees"
+    },
+    "sunrise": {
+      "value": "2021-01-27T07:28:24.718Z"
+    },
+    "sunset": {
+      "value": "2021-01-27T16:17:44.301Z"
+    },
+    "observation_time": {
+      "value": "2021-01-27T00:46:55.971Z"
+    }
+  },
+  {
+    "lat": 52.446023244274045,
+    "lon": 4.819207798979252,
+    "temp": {
+      "value": 2.07,
+      "units": "C"
+    },
+    "feels_like": {
+      "value": -2.24,
+      "units": "C"
+    },
+    "dewpoint": {
+      "value": -0.77,
+      "units": "C"
+    },
+    "wind_speed": {
+      "value": 4.82,
+      "units": "m/s"
+    },
+    "wind_gust": {
+      "value": 10.53,
+      "units": "m/s"
+    },
+    "humidity": {
+      "value": 81.59,
+      "units": "%"
+    },
+    "wind_direction": {
+      "value": 188.46,
+      "units": "degrees"
+    },
+    "sunrise": {
+      "value": "2021-01-27T07:28:24.718Z"
+    },
+    "sunset": {
+      "value": "2021-01-27T16:17:44.301Z"
+    },
+    "observation_time": {
+      "value": "2021-01-27T01:16:55.971Z"
+    }
+  }
+]

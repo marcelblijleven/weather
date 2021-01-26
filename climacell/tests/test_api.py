@@ -4,13 +4,16 @@ import os
 from unittest import TestCase, mock
 from climacell.api import Client, Measurement, Response, Error
 from climacell.fields import (
-    FIELD_TEMP, FIELD_DEW_POINT, FIELD_HUMIDITY
+    FIELD_TEMP, FIELD_DEW_POINT, FIELD_HUMIDITY,
+    FIELD_WIND_SPEED, FIELD_WIND_GUST, FIELD_WIND_DIRECTION,
+    FIELD_SUNRISE, FIELD_SUNSET,
 )
 from climacell.utils import join_fields
 
 
 ERROR_FILE = os.path.dirname(__file__) + '/data/error_example.json'
 HOURLY_FILE = os.path.dirname(__file__) + '/data/hourly_example.json'
+NOWCAST_FILE = os.path.dirname(__file__) + '/data/nowcast_example.json'
 
 
 class MockResponse:
@@ -29,6 +32,8 @@ def mock_requests_get(*args, **kwargs):
         return MockResponse(None, 404)
     elif args[0] == base_url + '/weather/forecast/hourly':
         file = HOURLY_FILE
+    elif args[0] == base_url + '/weather/nowcast':
+        file = NOWCAST_FILE
 
     with open(file) as json_file:
         data = json.load(json_file)
@@ -152,4 +157,100 @@ class TestClient(TestCase):
             'https://api.climacell.co/v3/weather/forecast/hourly',
             params=expected_params,
             headers={'apikey': 'apikey'}
+        )
+
+    @mock.patch('climacell.api.requests.get', side_effect=mock_requests_get)
+    def test_nowcast(self, mock_get):
+        client = Client('apikey')
+        lat = 52.446023244274045
+        lon = 4.819207798979252
+        timestep = 30
+        fields = [
+            FIELD_TEMP,
+            FIELD_DEW_POINT,
+            FIELD_HUMIDITY,
+            FIELD_WIND_SPEED,
+            FIELD_WIND_GUST,
+            FIELD_WIND_DIRECTION,
+            FIELD_SUNRISE,
+            FIELD_SUNSET,
+        ]
+
+        response = client.nowcast(lat=lat, lon=lon, fields=fields, timestep=timestep)
+        measurements = response.get_measurements()
+
+        expected_params = {
+            'lat': 52.446023244274045,
+            'lon': 4.819207798979252,
+            'timestep': 30,
+            'start_time': 'now',
+            'unit_system': 'si',
+            'fields': join_fields(fields),
+        }
+
+        mock_get.assert_called_with(
+            'https://api.climacell.co/v3/weather/nowcast',
+            params=expected_params,
+            headers={'apikey': 'apikey'}
+        )
+        # 13 timesteps, 8 measurements per timestep
+        self.assertEqual(13 * 8, len(measurements))
+
+    @mock.patch('climacell.api.requests.get', side_effect=mock_requests_get)
+    def test_nowcast_valid_end_time(self, mock_get):
+        client = Client('apikey')
+        lat = 52.446023244274045
+        lon = 4.819207798979252
+        timestep = 30
+        fields = [FIELD_TEMP]
+        start_time = 'now'
+        end_time = '2021-01-14T21:00:00.000Z'
+
+        response = client.nowcast(
+            lat=lat, lon=lon, fields=fields, timestep=timestep,
+            start_time=start_time, end_time=end_time
+        )
+
+        self.assertFalse(response.has_error)
+
+        expected_params = {
+            'lat': 52.446023244274045,
+            'lon': 4.819207798979252,
+            'timestep': 30,
+            'start_time': 'now',
+            'unit_system': 'si',
+            'fields': join_fields(fields),
+            'end_time': end_time
+        }
+
+        mock_get.assert_called_with(
+            'https://api.climacell.co/v3/weather/nowcast',
+            params=expected_params,
+            headers={'apikey': 'apikey'}
+        )
+
+    def test_nowcast_invalid_start_time(self):
+        client = Client('apikey')
+        lat = 52.446023244274045
+        lon = 4.819207798979252
+        timestep = 30
+        fields = [FIELD_TEMP]
+        start_time = 'yesterday'
+
+        self.assertRaises(
+            ValueError, client.nowcast, lat, lon, fields, timestep, start_time
+        )
+
+    def test_nowcast_invalid_end_time(self):
+        client = Client('apikey')
+        lat = 52.446023244274045
+        lon = 4.819207798979252
+        timestep = 30
+        fields = [FIELD_TEMP]
+        start_time = 'now'
+        end_time = 'tomorrow'
+
+        self.assertRaises(
+            ValueError, client.nowcast, lat, lon, fields,
+            timestep, start_time, end_time
         )

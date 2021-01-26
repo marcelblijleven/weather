@@ -8,7 +8,7 @@ class Client:
         self.base_url = "https://api.climacell.co/v3"
         self.api_key = api_key
 
-    def __do_request(self, endpoint, params):
+    def _do_request(self, endpoint, params):
         """
         Execute the request with the provided parameters
         :param string endpoint: endpoint to call
@@ -32,7 +32,7 @@ class Client:
         :param str start_time: ISO 8601 or 'now'
         :param str end_time: ISO 8601 or None
         :param str units: si or us
-        :return: returns a forecast response
+        :return: returns an hourly forecast response
         :rtype: Response
         """
         params = {
@@ -40,7 +40,7 @@ class Client:
             'lon': lon,
             'start_time': start_time,
             'unit_system': units,
-            'fields': join_fields(fields)
+            'fields': join_fields(fields),
         }
 
         if start_time != 'now' and not check_datetime_str(start_time):
@@ -53,14 +53,47 @@ class Client:
                 params['end_time'] = end_time
 
         endpoint = '/weather/forecast/hourly'
-        response = self.__do_request(endpoint, params)
+        response = self._do_request(endpoint, params)
         return Response(response, fields)
 
-    def nowcast(self):
-        pass
+    def nowcast(self, lat, lon, fields, timestep, start_time='now', end_time=None, units='si'):
+        """
+        Get the nowcast forecast with a maximum of 360 minutes out
+
+        :param float lat:
+        :param float lon:
+        :param list[str] fields:
+        :param int timestep:
+        :param str start_time:
+        :param str end_time:
+        :param str units:
+        :return: returns a nowcast forecast response
+        :rtype: Response
+        """
+        params = {
+            'lat': lat,
+            'lon': lon,
+            'timestep': timestep,
+            'start_time': start_time,
+            'unit_system': units,
+            'fields': join_fields(fields),
+        }
+
+        if start_time != 'now' and not check_datetime_str(start_time):
+            raise ValueError('Invalid start time provided')
+
+        if end_time is not None:
+            if not check_datetime_str(end_time):
+                raise ValueError('Invalid end time provided')
+            else:
+                params['end_time'] = end_time
+
+        endpoint = '/weather/nowcast'
+        response = self._do_request(endpoint, params)
+        return Response(response, fields)
 
     def daily(self):
-        pass
+        raise NotImplemented
 
 
 class Error:
@@ -94,7 +127,11 @@ class Response:
         for item in self.json:
             for field in self.fields:
                 value = item[field]['value']
-                units = item[field]['units']
+
+                try:
+                    units = item[field]['units']
+                except KeyError:
+                    units = None
                 observation_time = item['observation_time']['value']
                 measurements.append(Measurement(field, value, units, observation_time))
 
