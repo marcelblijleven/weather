@@ -22,9 +22,9 @@ class Client:
 
         return requests.get(self.base_url + endpoint, params=params, headers=headers)
 
-    def hourly(self, lat, lon, fields, start_time='now', end_time=None, units='si'):
+    def _forecast(self, endpoint, lat, lon, fields, start_time, end_time, units):
         """
-        Get the hourly forecast with a maximum of 108 hours out
+        Get a forecast response
 
         :param float lat: location latitude
         :param float lon: location longitude
@@ -52,9 +52,24 @@ class Client:
             else:
                 params['end_time'] = end_time
 
-        endpoint = '/weather/forecast/hourly'
         response = self._do_request(endpoint, params)
         return Response(response, fields)
+
+    def hourly(self, lat, lon, fields, start_time='now', end_time=None, units='si'):
+        """
+        Get the hourly forecast with a maximum of 108 hours out
+
+        :param float lat: location latitude
+        :param float lon: location longitude
+        :param list[str] fields: requested data fields
+        :param str start_time: ISO 8601 or 'now'
+        :param str end_time: ISO 8601 or None
+        :param str units: si or us
+        :return: returns an hourly forecast response
+        :rtype: Response
+        """
+        endpoint = '/weather/forecast/hourly'
+        return self._forecast(endpoint, lat, lon, fields, start_time, end_time, units)
 
     def nowcast(self, lat, lon, fields, timestep, start_time='now', end_time=None, units='si'):
         """
@@ -92,8 +107,21 @@ class Client:
         response = self._do_request(endpoint, params)
         return Response(response, fields)
 
-    def daily(self):
-        raise NotImplemented
+    def daily(self, lat, lon, fields, start_time='now', end_time=None, units='si'):
+        """
+        Get the nowcast forecast with a maximum of 15 days out
+
+        :param float lat:
+        :param float lon:
+        :param list[str] fields:
+        :param str start_time:
+        :param str end_time:
+        :param str units:
+        :return: returns a daily forecast response
+        :rtype: Response
+        """
+        endpoint = '/weather/forecast/daily'
+        return self._forecast(endpoint, lat, lon, fields, start_time, end_time, units)
 
 
 class Error:
@@ -126,14 +154,30 @@ class Response:
 
         for item in self.json:
             for field in self.fields:
-                value = item[field]['value']
+                if isinstance(item[field], list):
+                    # This is a daily forecast, with a min and max observed value
+                    # Todo: better handling of different types of responses
+                    min_measurement = item[field][0]
+                    max_measurement = item[field][1]
+                    min_value = min_measurement['min']['value']
+                    max_value = max_measurement['max']['value']
+                    min_unit = min_measurement['min'].get('units', None)
+                    max_unit = max_measurement['max'].get('units', None)
+                    min_observation_time = min_measurement['observation_time']
+                    max_observation_time = max_measurement['observation_time']
+                    measurements.append(Measurement(field + '_min', min_value, min_unit, min_observation_time))
+                    measurements.append(Measurement(field + '_max', max_value, max_unit, max_observation_time))
+                else:
+                    # Regular measurement
+                    value = item[field]['value']
 
-                try:
-                    units = item[field]['units']
-                except KeyError:
-                    units = None
-                observation_time = item['observation_time']['value']
-                measurements.append(Measurement(field, value, units, observation_time))
+                    try:
+                        units = item[field]['units']
+                    except KeyError:
+                        units = None
+
+                    observation_time = item['observation_time']['value']
+                    measurements.append(Measurement(field, value, units, observation_time))
 
         return measurements
 

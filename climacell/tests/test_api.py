@@ -13,6 +13,7 @@ from climacell.utils import join_fields
 
 ERROR_FILE = os.path.dirname(__file__) + '/data/error_example.json'
 HOURLY_FILE = os.path.dirname(__file__) + '/data/hourly_example.json'
+DAILY_FILE = os.path.dirname(__file__) + '/data/daily_example.json'
 NOWCAST_FILE = os.path.dirname(__file__) + '/data/nowcast_example.json'
 
 
@@ -34,6 +35,8 @@ def mock_requests_get(*args, **kwargs):
         file = HOURLY_FILE
     elif args[0] == base_url + '/weather/nowcast':
         file = NOWCAST_FILE
+    elif args[0] == base_url + '/weather/forecast/daily':
+        file = DAILY_FILE
 
     with open(file) as json_file:
         data = json.load(json_file)
@@ -254,3 +257,29 @@ class TestClient(TestCase):
             ValueError, client.nowcast, lat, lon, fields,
             timestep, start_time, end_time
         )
+
+    @mock.patch('climacell.api.requests.get', side_effect=mock_requests_get)
+    def test_daily(self, mock_get):
+        client = Client('apikey')
+        lat = 52.446023244274045
+        lon = 4.819207798979252
+        fields = [FIELD_TEMP, FIELD_DEW_POINT, FIELD_HUMIDITY]
+
+        response = client.daily(lat=lat, lon=lon, fields=fields)
+        measurements = response.get_measurements()
+
+        expected_params = {
+            'lat': 52.446023244274045,
+            'lon': 4.819207798979252,
+            'start_time': 'now',
+            'unit_system': 'si',
+            'fields': join_fields([FIELD_TEMP, FIELD_DEW_POINT, FIELD_HUMIDITY]),
+        }
+
+        mock_get.assert_called_with(
+            'https://api.climacell.co/v3/weather/forecast/daily',
+            params=expected_params,
+            headers={'apikey': 'apikey'}
+        )
+
+        self.assertEqual(6, len(measurements))

@@ -1,0 +1,73 @@
+[
+  {
+    "temp": [
+      {
+        "observation_time": "2021-01-27T06:00:00Z",
+        "min": {
+          "value": 1.04,
+          "units": "C"
+        }
+      },
+      {
+        "observation_time": "2021-01-26T12:00:00Z",
+        "max": {
+          "value": 6.13,
+          "units": "C"
+        }
+      }
+    ],
+    "feels_like": [
+      {
+        "observation_time": "2021-01-27T06:00:00Z",
+        "min": {
+          "value": -3.7,
+          "units": "C"
+        }
+      },
+      {
+        "observation_time": "2021-01-26T12:00:00Z",
+        "max": {
+          "value": 6.13,
+          "units": "C"
+        }
+      }
+    ],
+    "humidity": [
+      {
+        "observation_time": "2021-01-26T12:00:00Z",
+        "min": {
+          "value": 70.3,
+          "units": "%"
+        }
+      },
+      {
+        "observation_time": "2021-01-26T08:00:00Z",
+        "max": {
+          "value": 94.81,
+          "units": "%"
+        }
+      }
+    ],
+    "dewpoint": [
+      {
+        "observation_time": "2021-01-27T01:00:00Z",
+        "min": {
+          "value": -0.99,
+          "units": "C"
+        }
+      },
+      {
+        "observation_time": "2021-01-26T10:00:00Z",
+        "max": {
+          "value": 2.59,
+          "units": "C"
+        }
+      }
+    ],
+    "observation_time": {
+      "value": "2021-01-26"
+    },
+    "lat": 52.3379234919951,
+    "lon": 4.954296098279855
+  }
+]
